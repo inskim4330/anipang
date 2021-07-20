@@ -10,23 +10,15 @@ namespace anipang
         private int _unitMaxCount;
 
         //Units in map.
-        private List<Unit> _presentUnits;
+        private Unit[,] _presentUnits;
+
         public Map(int width, int height)
         {
             _width = width;
             _height = height;
             _unitMaxCount = width * height;
-            _presentUnits = new List<Unit>();
+            _presentUnits = new Unit[_width, _height] ;
         }
-
-        /*
-        private Unit[,] _units;
-
-        public Map(int width, int height)
-        {
-            _units = new Unit[width, height];
-        }
-        */
 
     }
 }
