@@ -5,6 +5,7 @@ namespace anipang
 {
     public class Map
     {
+        private static Map _instance;
         private int _width;
         private int _height;
         private int _unitMaxCount;
@@ -12,11 +13,34 @@ namespace anipang
         //Units in map.
         private Unit[,] _presentUnits;
 
-        public Map(int width, int height)
+        public static Map Instance
         {
-            _width = width;
-            _height = height;
-            _unitMaxCount = width * height;
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = new Map();
+                }
+                return _instance;
+            }
+        }
+        public Unit[,] PresentUnits
+        {
+            get
+            {
+                return _presentUnits;
+            }
+            set
+            {
+                PresentUnits = value;
+            }
+        }
+
+        private Map()
+        {
+            _width = 7;
+            _height = 7;
+            _unitMaxCount = _width * _height;
             _presentUnits = new Unit[_width, _height] ;
         }
 
