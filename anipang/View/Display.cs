@@ -8,18 +8,26 @@ namespace anipang.View
 {
     class Display
     {
-        public static void DisplayMap()
+        public static void Map()
         {
             Console.SetCursorPosition(0, 0);
             Console.CursorVisible = false;
             //Console.CursorLeft = 0;
-            for (int i = 0; i < Map.Instance.Height; i++)
+            for (int i = 0; i < anipang.Map.Instance.Height; i++)
             {
-                for(int j = 0; j<Map.Instance.Width; j++)
+                for(int j = 0; j< anipang.Map.Instance.Width; j++)
                 {
-                    if(Map.Instance.GetUnit(new Vector2(i, j)) != null)
+                    if(anipang.Map.Instance.GetUnit(new Vector2(i, j)) != null)
                     {
-                        Console.Write(Map.Instance.GetUnit(new Vector2(i, j)).Shape);
+                        if(Player.CursorPosition == new Vector2(i, j))
+                        {
+                            Console.Write(anipang.Map.Instance.GetUnit(new Vector2(i, j)).ShapeSelected);
+                        }
+                        else
+                        {
+                            Console.Write(anipang.Map.Instance.GetUnit(new Vector2(i, j)).Shape);
+                        }
+                        
                     }
                     else
                     {
@@ -39,15 +47,8 @@ namespace anipang.View
         {
             while (true)
             {
-                //act();
-                Display.DisplayMap();
-                Delay.MakeDelay(500);
-
-                Consecutiveness.Examine();
-                Display.DisplayMap();
-                Delay.MakeDelay(500);
-
-                Gravity.Apply();
+                act();
+                
             }
         }
     }

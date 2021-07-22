@@ -32,9 +32,11 @@ namespace anipang.Element
         }
 
         public abstract void Pang();
+        /*
         public object ShallowCopy()
         {
             return this.MemberwiseClone();
         }
+        */
     }
 }

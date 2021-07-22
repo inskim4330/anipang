@@ -13,6 +13,11 @@ namespace anipang
         {
             Examine(Direction.Horizontal);
             Examine(Direction.Vertical);
+
+            if (Map.Instance.CurUnitForExchange != null && Map.Instance.TargetPosForExchange != null)
+            {
+                Map.Instance.ExchangeUnit(Map.Instance.TargetPosForExchange.Position, Map.Instance.CurUnitForExchange.Position);
+            }
         }
         public enum Direction
         {
@@ -68,6 +73,8 @@ namespace anipang
                                 {
                                     units.Pop().Pang();
                                 }
+                                Map.Instance.CurUnitForExchange = null;
+                                Map.Instance.TargetPosForExchange = null;
                             }
                             units.Clear();
                             units.Push(receivedUnit);

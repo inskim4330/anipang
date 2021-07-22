@@ -23,5 +23,15 @@ namespace anipang
             _y = y;
             _x = x;
         }
+
+        public static bool operator ==(Vector2 firstOperand, Vector2 secondOperand)
+        {
+            return (firstOperand.Y == secondOperand.Y && firstOperand.X == secondOperand.X);
+        }
+
+        public static bool operator !=(Vector2 firstOperand, Vector2 secondOperand)
+        {
+            return (firstOperand.Y != secondOperand.Y && firstOperand.X != secondOperand.X);
+        }
     }
 }
