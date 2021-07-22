@@ -4,9 +4,9 @@ namespace anipang.Element.Creation
 {
     public class CircleCreator : Creator
     {
-        public override Unit Create()
+        protected override Unit Create()
         {
-            return new Circle(new Vector2(0,0));
+            return new Circle();
         }
     }
 }

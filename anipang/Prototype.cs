@@ -1,52 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using anipang.Element;
+using anipang.Element.Creation;
 namespace anipang
 {
-    public class Prototype
+    class Prototype
     {
-        private Unit _circle;
-        private Unit _club;
-        private Unit _diamond;
-        private Unit _heart;
-        private Unit _spade;
-        private Unit _square;
-        private Unit _star;
-        public Unit this[string value]
+        private static Prototype _instance;
+        public static Prototype Instance
         {
             get
             {
-                switch (value.ToLower())
+                if(_instance == null)
                 {
-                    case "circle":
-                        return _circle;
-                    case "club":
-                        return _club;
-                    case "diamond":
-                        return _diamond;
-                    case "heart":
-                        return _heart;
-                    case "spade":
-                        return _spade;
-                    case "square":
-                        return _square;
-                    case "star":
-                        return _star;
-                    default:
-                        break;
+                    _instance = new Prototype();
                 }
-                return null;
+                return _instance;
             }
         }
-
-        public Prototype()
+        private Prototype() 
         {
-            _circle = new Circle('a', 'a', new Vector2(0, 0));
-            _club = new Club('a', 'a', new Vector2(0, 0));
-            _diamond = new Diamond('a', 'a', new Vector2(0, 0));
-            _heart = new Heart('a', 'a', new Vector2(0, 0));
-            _spade = new Spade('a', 'a', new Vector2(0, 0));
-            _square = new Square('a', 'a', new Vector2(0, 0));
-            _star = new Star('a', 'a', new Vector2(0, 0));
+            _prototypeCreator.Add(new CircleCreator());
+            _prototypeCreator.Add(new ClubCreator());
+            _prototypeCreator.Add(new DiamondCreator());
+            _prototypeCreator.Add(new HeartCreator());
+            _prototypeCreator.Add(new SpadeCreator());
+            _prototypeCreator.Add(new SquareCreator());
+            _prototypeCreator.Add(new StarCreator());
+        }
+
+        private List<Creator> _prototypeCreator = new List<Creator>();
+        public void RegisterCreator(Creator newCreator)
+        {
+            _prototypeCreator.Add(newCreator);
+        }
+        public Creator GetCreator(int index)
+        {
+            return _prototypeCreator[index];
+        }
+        public Creator GetCreatorArbitrarily()
+        {
+            Random random = new Random();
+            return _prototypeCreator[random.Next(0,_prototypeCreator.Count)];
         }
     }
 }

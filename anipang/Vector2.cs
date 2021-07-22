@@ -4,10 +4,24 @@ namespace anipang
     public class Vector2
     {
         private int _x, _y;
-        public Vector2(int x, int y)
+        public int X
         {
-            _x = x;
+            get
+            {
+                return _x;
+            }
+        }
+        public int Y
+        {
+            get
+            {
+                return _y;
+            }
+        }
+        public Vector2(int y, int x)
+        {
             _y = y;
+            _x = x;
         }
     }
 }

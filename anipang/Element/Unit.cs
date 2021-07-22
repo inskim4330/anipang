@@ -13,8 +13,8 @@ namespace anipang.Element
         protected Vector2 _position;
 
         //Since setter is unnecessary, discourage it.
-        public char Shape { get; }
-        public char ShapeSelected { get; }
+        public char Shape { get { return _shape; } }
+        public char ShapeSelected { get { return _shapeSelected; } }
 
         public Vector2 Position
         {
@@ -32,5 +32,9 @@ namespace anipang.Element
         }
 
         public abstract void Pang();
+        public object ShallowCopy()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

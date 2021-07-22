@@ -4,11 +4,18 @@ namespace anipang.Element.Creation
 {
     public abstract class Creator
     {
-        public abstract Unit Create();
-        public void PlaceUnit(IRegister register)
+        protected abstract Unit Create();
+        public void PlaceUnit(IPlacer placer)
         {
             Unit unit = Create();
-            register.RegisterToMap(unit);
+            placer.PlaceToMap(unit);
+        }
+
+        public void PlaceUnit(IPlacer placer, Vector2 position)
+        {
+            Unit unit = Create();
+            unit.Position = position;
+            placer.PlaceToMap(unit);
         }
     }
 }
