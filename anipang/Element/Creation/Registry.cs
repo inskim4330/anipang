@@ -5,31 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using anipang.Element;
 using anipang.Element.Creation;
-namespace anipang
+namespace anipang.Element.Creation
 {
-    class Prototype
+    class Registry
     {
-        private static Prototype _instance;
-        public static Prototype Instance
+        private static Registry _instance;
+        public static Registry Instance
         {
             get
             {
                 if(_instance == null)
                 {
-                    _instance = new Prototype();
+                    _instance = new Registry();
                 }
                 return _instance;
             }
         }
-        private Prototype() 
+        private Registry() 
         {
-            _prototypeCreator.Add(new CircleCreator());
-            _prototypeCreator.Add(new ClubCreator());
-            _prototypeCreator.Add(new DiamondCreator());
-            _prototypeCreator.Add(new HeartCreator());
-            _prototypeCreator.Add(new SpadeCreator());
-            _prototypeCreator.Add(new SquareCreator());
-            _prototypeCreator.Add(new StarCreator());
+            RegisterCreator(new CircleCreator());
+            RegisterCreator(new ClubCreator());
+            RegisterCreator(new DiamondCreator());
+            RegisterCreator(new HeartCreator());
+            RegisterCreator(new SpadeCreator());
+            RegisterCreator(new SquareCreator());
+            RegisterCreator(new StarCreator());
         }
 
         private List<Creator> _prototypeCreator = new List<Creator>();
